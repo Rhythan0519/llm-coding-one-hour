@@ -61,7 +61,7 @@ class MultiHeadAttention(nn.Module):
         k = self.split_heads(k)
         v = self.split_heads(v)
 
-        scores = (q @ k.transpose(-2, -1))/(v.shape[-1])
+        scores = (q @ k.transpose(-2, -1)) / (math.sqrt(C))
         if self.causal:
             scores = self.apply_causal_mask(scores)
         attn = F.softmax(scores, dim=-1)
