@@ -57,7 +57,7 @@ class MultiHeadAttention(nn.Module):
         k = self._split_head(k)
         v = self._split_head(v)
 
-        scores = (q @ k.transpose(-2, -1)) / (math.sqrt(C))
+        scores = (q @ k.transpose(-2, -1)) / (math.sqrt(self.head_dim))
         if self.causal:
             scores = self._apply_causal_mask(scores)
         
