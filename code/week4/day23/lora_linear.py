@@ -13,7 +13,7 @@ class LoRALinear(nn.Module):
         self.alpha = alpha
         self.base = nn.Linear(in_features, out_features, bias=bias)
         for p in self.base.parameters():
-            p.requires_grad_(False)
+            p.requires_grad = False
         if rank > 0:
             self.lora_A = nn.Parameter(torch.empty(rank, in_features))
             self.lora_B = nn.Parameter(torch.empty(out_features, rank))
